@@ -1,5 +1,6 @@
 config/initializers/paperclip.rb
 log/*.log
+webrat.log
 log/*.pid
 tmp/**/*
 .DS_Store
