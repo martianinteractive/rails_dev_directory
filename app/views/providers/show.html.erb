@@ -1,10 +1,5 @@
-<% 
-  # Title: <name> Developer Profile | Rails Developer in <city> <state> | Rails Development Directory
-  # Meta Description: View the Rails developer profile for <name>, located in <city>, <state>, <country>, providing <services offered>.
- %>
-
-<%- content_for :title do -%><%= @provider.company_name %> <%= t('provider.developer_profile') %> | <%= t('provider.rails_developer_in') %> <%= [@provider.city, @provider.state_province].reject { |a| a.blank? or a == 'NA' }.join(', ') %> | <%- end %>
-<%- content_for :description do -%><meta name="description" content="<%= t('provider.developer_description', :name => @provider.company_name, :address => @provider.private_address.join(', '), :services_offered => (Service.checked + @provider.services).collect{ |t| t.name }.join(', ')) %>"><%- end -%>
+<%- content_for :title do -%><%= @provider.company_name %> <%= t('provider.profile') %> | <%= [@provider.city, @provider.state_province].reject { |a| a.blank? or a == 'NA' }.join(', ') %> | <%- end %>
+<%- content_for :description do -%><meta name="description" content="<%= t('provider.description', :name => @provider.company_name, :address => @provider.private_address.join(', '), :services_offered => (Service.checked + @provider.services).collect{ |t| t.name }.join(', ')) %>"><%- end -%>
 
 
 
@@ -85,7 +80,7 @@
 
 <div class="sidebar">
   
-  <!-- <% form_for :provider, :url => new_rfp_path, :html => {:method => :get} do |f| -%>
+  <!-- <%= form_for :provider, :url => new_rfp_path, :html => {:method => :get} do |f| -%>
       <%= hidden_field_tag "provider_id", @provider.id %>
       <%= f.submit t('provider.send_rfp') %>
     <% end -%> -->

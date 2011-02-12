@@ -1,6 +1,6 @@
 module ProvidersHelper
   def setup_provider(provider)
-    returning(provider) do |p|
+    provider.tap do |p|
       p.users.build if p.users.empty?
     end
   end

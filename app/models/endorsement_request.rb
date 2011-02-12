@@ -1,8 +1,6 @@
 class EndorsementRequest < ActiveRecord::Base
-  validates_presence_of :message
-  validate_on_create :recipient_count
-  
-  attr_reader :recipient_addresses
+  validates :message, :presence => true
+  validate :recipient_count, :on => :create
   
   after_save :send_requests
 
@@ -10,14 +8,15 @@ class EndorsementRequest < ActiveRecord::Base
 
   belongs_to :provider
   
-  xss_terminate :except => [:recipient_addresses]
-  
   def recipient_addresses=(addresses = '')
-    @recipient_addresses = []
     addresses.split(%r{,\s*}).each do |email|
       recipients.build(:email => email)
-      @recipient_addresses << email
+      recipient_addresses << email
     end
+  end
+  
+  def recipient_addresses
+    @recipient_addresses ||= Array.new
   end
 
   def send_requests

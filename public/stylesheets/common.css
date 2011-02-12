@@ -140,7 +140,7 @@ label {
   width: 16em;
 }
 input[value="Save"], input[id="user_submit"], input[value="Sign up"], input[id="rfp_submit"], 
-input[id="endorsement_request_submit"], input[value="Find providers"], input[value="Find Rails developers"], form ul, form p, .edit_provider img {
+input[id="endorsement_request_submit"], input[value="Find providers"], input[value="Find providers"], form ul, form p, .edit_provider img {
 	margin-left: 17em;
 }
 input[type="checkbox"] {

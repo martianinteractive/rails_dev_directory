@@ -4,7 +4,7 @@
 
 <hr />
 
-<% form_for [@provider, @endorsement] do |f| -%>
+<%= form_for [@provider, @endorsement] do |f| -%>
   <%= f.error_messages %>
 
   <%= hidden_field_tag :key, params[:key] %>

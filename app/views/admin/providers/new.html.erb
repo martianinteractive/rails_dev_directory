@@ -1,6 +1,6 @@
 <h2><%= t('provider.add_new') %></h2>
 
-<% form_for [:admin, @provider] do |f| -%>
+<%= form_for [:admin, @provider] do |f| -%>
   <%= f.error_messages %>
   <fieldset>
     <%= f.label :company_name, t("provider.company_name") %> <%= f.text_field :company_name %> <br />

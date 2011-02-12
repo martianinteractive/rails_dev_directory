@@ -3,7 +3,7 @@
 
   <div class="wideForm">
   <%- if ["new", "rejected"].include?(@endorsement.state) -%>
-    <%- form_for [:my, @endorsement] do |f| -%>
+    <%= form_for [:my, @endorsement] do |f| %>
         <%= hidden_field_tag "state", "approved" %>
         <%= f.submit t('endorsement.approve') %>
         <%= t('forms.or') if @endorsement.state == 'new' %> 
@@ -11,7 +11,7 @@
   <%- end -%>
   
   <%- if ["new", "approved"].include?(@endorsement.state) -%>
-    <%- form_for [:my, @endorsement] do |f| -%>
+    <%= form_for [:my, @endorsement] do |f| %>
 
       <%= hidden_field_tag "state", "rejected" %>
       <%= f.submit t('endorsement.reject') %>

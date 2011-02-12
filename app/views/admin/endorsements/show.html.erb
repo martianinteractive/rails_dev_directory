@@ -27,7 +27,7 @@
 </dl>
 
 <p>
-  <% form_for [:admin, @endorsement], :html => {:method => :delete} do |f| -%>
+  <%= form_for [:admin, @endorsement], :html => {:method => :delete} do |f| %>
     <%= f.submit t('endorsement.admin.delete'), :class => "confirm" %>
-  <% end -%>
+  <% end %>
 </p>

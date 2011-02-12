@@ -1,13 +1,13 @@
 <h2><%= t('provider.request_endorsement') %></h2>
 
-<% form_for [:my, @endorsement_request] do |f| -%>
+<%= form_for [:my, @endorsement_request] do |f| -%>
   <%= f.error_messages %>
   <fieldset>
     <%= f.label :recipient_addresses, t("endorsement_request.email_addresses") %>
     <%= f.text_area :recipient_addresses %><br />
     <p>
-      <%= t("endorsement_request.email_note") %>
-      <%= t("endorsement_request.email_format") %>
+      <%= t("endorsement_request.email_note_html") %>
+      <%= t("endorsement_request.email_format_html") %>
     </p>
   </fieldset>
 

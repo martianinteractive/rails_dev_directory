@@ -1,3 +1,4 @@
+Feature: provider requests
 As an Engine Yard administrator
 I want to see the RFPs that a provider has generated
 So that I can monitor the performance of the system
@@ -7,7 +8,7 @@ So that I can monitor the performance of the system
     Given a provider "Tim Stafford" with an RFP called "Through the window of a train"
       And a logged in admin user
     When I am on the admin dashboard
-      And I follow "Developers"
+      And I follow "navigation.providers" translation
       And I follow "Jinglicious"
       And I follow "provider.rfps" translation
     Then I should see "Nice work finger"	
@@ -19,7 +20,7 @@ So that I can monitor the performance of the system
     Given a provider "Willy Wallow" with an RFP called "Spamtastic"
       And a logged in admin user
     When I am on the admin dashboard
-      And I follow "Developers"
+      And I follow "navigation.providers" translation
       And I follow "Willy Wallow"
       And I follow "provider.rfps" translation
       And I follow "Spamtastic"

@@ -1,9 +1,8 @@
 class Endorsement < ActiveRecord::Base
   include AASM
   
-  validates_presence_of :name, :year_hired, :position, :company, :email, :url,
-                        :endorsement, :endorsement_request_recipient_id
-  validate_on_create :endorser_email_matches_email_recipient
+  validates :name, :year_hired, :position, :company, :email, :url,:endorsement, :endorsement_request_recipient_id, :presence => true
+  validate :endorser_email_matches_email_recipient, :on => :create
   
   aasm_initial_state :new
   
@@ -31,8 +30,8 @@ class Endorsement < ActiveRecord::Base
   after_create :deliver_notification
   after_destroy :update_provider_counter_cache
   
-  named_scope :recent, :order => "created_at desc", :limit => 3
-  named_scope :approved, :conditions => {:aasm_state => 'approved'}
+  scope :recent, :order => "created_at desc", :limit => 3
+  scope :approved, :conditions => {:aasm_state => 'approved'}
 
   def activate_provider
     provider.check_endorsements_and_activate if provider and provider.status == 'inactive'
@@ -48,13 +47,14 @@ class Endorsement < ActiveRecord::Base
   
 private
   def endorser_email_matches_email_recipient
-    parsed_email = TMail::Address.parse(endorsement_request_recipient.email).address rescue ''
+    mail = Mail::Address.new(endorsement_request_recipient.email)
+    parsed_email = mail.address rescue ''
     if parsed_email != self.email
       errors.add(:email, I18n.t('endorsement.validations.use_the_recipient_email'))
     end
   end
 
   def deliver_notification
-    Notification.deliver_endorsement_notification(self) if provider and provider.email
+    Notification.endorsement_notification(self).deliver if provider and provider.email
   end
 end

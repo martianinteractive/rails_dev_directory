@@ -1,3 +1,4 @@
+Feature: admin providers portfolio items
 As an Engine Yard administrator
 I want to browse and create portfolio items for providers
 So that I can see the activity on the provider account and provide support if necessary
@@ -6,7 +7,7 @@ So that I can see the activity on the provider account and provide support if ne
     Given a logged in admin user
       And I am on the admin dashboard
       And a provider "Old Grey Mare"
-    When I follow "Developers"
+    When I follow "navigation.providers" translation
       And I follow "Old Grey Mare"
       And I follow "Add a new project to your portfolio"
       And I fill in "Name" with "Norman Blake"
@@ -21,7 +22,7 @@ So that I can see the activity on the provider account and provide support if ne
       And I am on the admin dashboard
       And a provider "Natalie Haas"
       And a portfolio item "Fire and Grace" belonging to the "Natalie Haas" provider
-    When I follow "Developers"
+    When I follow "navigation.providers" translation
       And I follow "Natalie Haas"
       And I follow "Fire and Grace"
     When I fill in "Name" with "In the Moment"
@@ -34,9 +35,9 @@ So that I can see the activity on the provider account and provide support if ne
       And a portfolio item "Pure West" belonging to the "Vowel Movements" provider
       And a logged in admin user
     When I am on the admin dashboard
-      And I follow "Developers"
+      And I follow "navigation.providers" translation
       And I follow "Vowel Movements"
       And I follow "Pure West"
-    When I press "Delete this portfolio project"
-    Then I should see "Portfolio project deleted successfully"
+    When I press "portfolio_item.delete" translation
+    Then I should see "portfolio_item.deleted_successfully" translation
       And I should not see "Pure West"

@@ -1,3 +1,4 @@
+Feature: provider signup
 As a Provider
 I want to be able sign up
 So that I can can receive Rails project referrals
@@ -17,7 +18,6 @@ So that I can can receive Rails project referrals
       And I check "provider[terms_of_service]"
     When I press "Sign up"
     Then I should see "Users password doesn't match confirmation"
-      And I should see "provider.validations.valid_url" translation
     When I fill in the "password" with "americanpolka"
       And I fill in the "Retype password" with "americanpolka"
       And I fill in the "Company website" with "oleopry.com"

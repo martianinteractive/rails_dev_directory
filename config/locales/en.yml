@@ -4,16 +4,16 @@
 en:
   general:
     site_title: Rails Development Directory
-    site_title_logo: "<img src='/images/type-rdd.png' alt='Rails Development Directory' />"
+    site_title_logo_html: "<img src='/images/type-rdd.png' alt='Rails Development Directory' />"
     site_title_admin: Rails Development Directory Admin
     "yes": "Yes"
     "no": "No"
-    access_denied: You don't have permission to do that
-    copyright: 'Created by <a href="http://www.engineyard.com"><img src="/images/logo-ey-horiz.png" alt="Engine Yard, Ruby on Rails Hosting" /></a>. Runs on <a href="http://www.engineyard.com/products/cloud">Engine Yard Cloud</a>.'
+    access_denied: You don't have permission
+    copyright_html: 'Created by <a href="http://www.engineyard.com"><img src="/images/logo-ey-horiz.png" alt="Engine Yard, Ruby on Rails Hosting" /></a>. Runs on <a href="http://www.engineyard.com/products/cloud">Engine'
     contact_us: 'Contact Us'
     terms: 'Terms and Conditions'
     
-    ago: '{{date}} ago'
+    ago: '%{date} ago'
     
     show: Show
     edit: Edit
@@ -26,7 +26,7 @@ en:
     done_sorting: Done Sorting
     
   signin:
-    failed: "Couldn't log you in as '{{user}}'"
+    failed: "Couldn't log you in as '%{user}'"
     
   forms:
     save: Save
@@ -58,7 +58,7 @@ en:
     services: Services
 
   dashboard:
-    dashboard_for: "{{company}} Admin"
+    dashboard_for: "%{company} Admin"
     rfps: Recent Requests for Proposals
     all_rfps: See All Requests
     endorsements: Recent Endorsements
@@ -73,21 +73,21 @@ en:
     dashboard:
       title: Admin Dashboard
       welcome: This is the administrator section of the Rails Development Directory
-      total_providers: "Total number of developers: {{providers_size}}"
-      active_providers: "active: {{active_providers_size}}"
-      inactive_providers: "inactive: {{inactive_providers_size}}"
-      flagged_providers: "flagged: {{flagged_providers_size}}"
+      total_providers: "Total number of developers: %{providers_size}"
+      active_providers: "active: %{active_providers_size}"
+      inactive_providers: "inactive: %{inactive_providers_size}"
+      flagged_providers: "flagged: %{flagged_providers_size}"
       active: active
       inactive: inactive
       flagged: flagged
       
-      rfps_submitted: "Total number of requests submitted: {{rfps_size}}"
-      endorsements_submitted: "Total number of endorsements submitted: {{endorsements_size}}"
+      rfps_submitted: "Total number of requests submitted: %{rfps_size}"
+      endorsements_submitted: "Total number of endorsements submitted: %{endorsements_size}"
       
   home:
     logo: /images/logo-rails.jpg
     welcome: "Looking for a Rails Developer?"
-    description: "<p>If you’re a business searching for an established, professional Rails development firm to build your Ruby on Rails application, then you’ve come to the right place!</p><p>We know that finding a qualified Ruby on Rails developer can be a challenge. On the Rails Development Directory, we match your business with professional Rails developers who want to build your app. It only takes seconds to find qualified firms, so start searching now!</p>"
+    description_html: "<p>If you’re a business searching for an established, professional Rails development firm to build your Ruby on Rails application, then you’ve come to the right place!</p><p>We know that finding a qualified Ruby on Rails developer can be a challenge. On the Rails Development Directory, we match your business with professional Rails developers who want to build your app. It only takes seconds to find qualified firms, so start searching now!</p>"
     find_a_provider: Find a Rails Developer
     full_listing: Full listing
     by_location: Geographic listing
@@ -100,13 +100,13 @@ en:
     users:
       add_new_headline: Add a new user
       add_new_description: New users can access your account and check requests and endorsements.
-      edit_headline: "Edit user: {{user}}"
+      edit_headline: "Edit user: %{user}"
       edit_description: Here you can change the user's details
       manage_headline: Manage users
       manage_description: Manage user access to your account.
-      created_successfully: "{{user}} was created and has been emailed a link to set up a password"
-      saved_successfully: "Details for {{user}} saved"
-      deleted_successfully: "User account for {{user}} was deleted"
+      created_successfully: "%{user} was created and has been emailed a link to set up a password"
+      saved_successfully: "Details for %{user} saved"
+      deleted_successfully: "User account for %{user} was deleted"
       add_new: Add a new user
     edit: Edit company profile
     edit_headline: Edit your company profile
@@ -115,10 +115,10 @@ en:
     updated_successfully: Thanks for updating your profile
 
   provider:
-    developer_profile: Developer Profile
+    profile: Developer Profile
     rails_developer_in: Rails Developer in
-    developer_description: "View the Rails developer profile for {{name}}, located in {{address}}, providing {{services_offered}}"
-    
+    developer_description: "View the Rails developer profile for %{name}, located in %{address}, providing %{services_offered}"
+
     by_state: View list by country / state
     outside_us: Outside United States
     all_locations: All Locations
@@ -166,14 +166,14 @@ en:
     portfolio_items_headline: Portfolio
 
     endorsement_headline: Satisfied customer? Endorse this developer
-    endorsement_description: "Please let us know your experience with {{company}}"
+    endorsement_description: "Please let us know your experience with %{company}"
     
     add_new: Add a new developer
     edit: Edit developer
     choose_country: Choose country...
     rfps: See Requests
     endorsements: See Endorsements
-    back_to_provider: "&larr; Back to {{provider}}"
+    back_to_provider: "&larr; Back to %{provider}"
     delete: Delete this provider
     
     saved_successfully: Developer saved successfully
@@ -204,7 +204,7 @@ en:
     min_budget: Minimum Budget
     endorsements: Endorsements
     status: Status
-    endorsements_count: Endorsements<br/><em>In case this goes out of sync</em>
+    endorsements_count_html: Endorsements<br/><em>In case this goes out of sync</em>
     users: Users
     terms_of_service: Terms of Use
     services: Services
@@ -212,7 +212,7 @@ en:
     action: Send Request To
     verified: Verified?
     
-    accept_terms_of_service: 'I accept the <a target="_BLANK" href="/pages/provider-terms-of-use">Terms of Use</a>'
+    accept_terms_of_service_html: 'I accept the <a target="_BLANK" href="/pages/provider-terms-of-use">Terms of Use</a>'
     
     administrator_password_headline: Please choose an administrator username and password
     administrator_password_description: "The administrator can edit company details and add additional users to the account."
@@ -221,13 +221,13 @@ en:
   
   user:
     add_new: Add a new user
-    add_new_to: Add a new user to {{provider}}
+    add_new_to: Add a new user to %{provider}
     edit: Edit this user
-    edit_on: Edit user on {{provider}}
+    edit_on: Edit user on %{provider}
     delete: Delete this user
     take_control: Take control
     resend_welcome: Resend welcome message
-    welcome: "Welcome, <strong>{{user}}</strong>"
+    welcome_html: "Welcome, <strong>%{user}</strong>"
     remember_me: Remember me
     belongs_to: Belongs to
     
@@ -250,7 +250,7 @@ en:
     account_not_located: "We're sorry, but we could not locate your account.  If you are having issues try copying and pasting the URL from your email into your browser or restarting the reset password process."
     password_updated: "Password successfully updated"
 
-    change_password_for: "Change password for {{user}}"
+    change_password_for: "Change password for %{user}"
     
     sign_out: Sign out
     
@@ -271,10 +271,10 @@ en:
 
   portfolio_item:
     add_new: Add a new project to your portfolio
-    add_new_to: Add a new project to the {{provider}} portfolio
-    add_new_for: Add a new project to the portfolio for {{provider}}
+    add_new_to: Add a new project to the %{provider} portfolio
+    add_new_for: Add a new project to the portfolio for %{provider}
     edit: Edit this portfolio project
-    edit_on: Edit porfolio project on {{provider}}
+    edit_on: Edit porfolio project on %{provider}
     delete: Delete this portfolio project
     no_portfolio_items: You haven't added any projects to your portfolio yet
     manage: Manage portfolio
@@ -303,8 +303,8 @@ en:
       invalid_recipients: Should contain a list of email addresses separated by commas
     subject: Subject
     email_addresses: Email Addresses
-    email_note: You can add up to 10 at a time (separated by commas).
-    email_format: "Use this format: First Last &lt;name@email.com&gt;"
+    email_note_html: You can add up to 10 at a time (separated by commas).
+    email_format_html: "Use this format: First Last &lt;name@email.com&gt;"
     message: Message
     save: Submit Endorsement Request
     
@@ -322,11 +322,11 @@ en:
     validations:
       budget_too_low: is too low. At least one of the providers you selected has a higher minimum than your budget.
     
-    rfps_for: Requests for {{provider}}
-    rfp_for: Requests for {{provider}}
+    rfps_for: Requests for %{provider}
+    rfp_for: Requests for %{provider}
     no_rfps: No requests have been submitted yet
     rfp_count_singular: 1 request has been submitted
-    rfp_count_plural: "{{count}} requests have been submitted"
+    rfp_count_plural: "%{count} requests have been submitted"
     show_rfp: Proposal Request
     delete: Delete Request
     providers: Submitted to these developers
@@ -345,8 +345,6 @@ en:
     phone_number: Phone
     postal_code: ZIP / Post code
     created_on: Sent on
-    
-    disclaimer: <strong>Disclaimer:</strong> Engine Yard does not represent the companies in this directory.
     
     about_your_project: Please tell us about your project
     services: "Services Required:"
@@ -369,7 +367,7 @@ en:
     submission:
       thanks_for_submitting: Thanks for submitting your request
       description: Developers will get in touch with you shortly.
-      instructions: "If you have any questions or don't receive a timely response, please contact us at <a href='mailto:info@railsdevelopment.com'>info@railsdevelopment.com</a>"
+      instructions_html: "If you have any questions or don't receive a timely response, please contact us at <a href='mailto:info@railsdevelopment.com'>info@railsdevelopment.com</a>"
     
     
     terms_of_service: Terms of use
@@ -416,7 +414,7 @@ en:
   endorsement:
     name: Your name
     sent_on: Sent on
-    year_hired: Year you hired {{company}}
+    year_hired: Year you hired %{company}
     company: Your company at the time
     position: Your position at the time
     email: Your email
@@ -456,9 +454,9 @@ en:
     thanks: Thanks for submitting your endorsement.
 
     recipient_company_name: Recipient
-    show_endorsement: "Endorsement for {{company_name}}"
-    endorsements_for: "Endorsements for {{company_name}}"
-    company_endorsements: "{{company}} Endorsements"
+    show_endorsement: "Endorsement for %{company_name}"
+    endorsements_for: "Endorsements for %{company_name}"
+    company_endorsements: "%{company} Endorsements"
     
     at: at
     hired: Hired
@@ -477,7 +475,7 @@ en:
     deleted_successfully: Request deleted
     
     request_count_singular: 1 request has been submitted
-    request_count_plural: "{{count}} requests have been submitted"
+    request_count_plural: "%{count} requests have been submitted"
   
   page:
     add_new: Add a new page
@@ -501,7 +499,7 @@ en:
     
     description: Description
     content: Content
-    accepts_textile: Accepts <a href="http://www.textism.com/tools/textile/">Textile</a>
+    accepts_textile_html: Accepts <a href="http://www.textism.com/tools/textile/">Textile</a>
     
     instructions: "You can use the pages function to change content on certain dynamic pages. If you set the URL of your page to 'home', you will be able to change the content in the content area of the homepage. If you set the URL to 'providers/new', you will be able to change the header of the provider signup page."
     seo_instructions: "Additionally, you can change the keywords and description for any page in the entire system, by setting the URL of a page to the controller and action of that page. For example, to change the keywords and description of the Developer Directory index, you would create a page with a URL of 'providers/index'."
@@ -529,37 +527,37 @@ en:
     providers: Export Providers
 
   country:
-    providers_in: "Rails Developers in {{country}}"
+    providers_in: "Rails Developers in %{country}"
     
   state:
-    providers_in: "US Rails Developers in {{state}}"
+    providers_in: "US Rails Developers in %{state}"
     
   email:
     subject: Subject
     message: Message
 
     rfp_notification: 
-      subject: "Request Submitted: {{project}}"
-      greeting: "Hi {{name}}"
+      subject: "Request Submitted: %{project}"
+      greeting: "Hi %{name}"
       introduction: A new request has been submitted. Click below to view the request.
       thanks: Thanks.
       signoff: The Rails Development Directory team
 
     endorsement_request: 
-      greeting: "Hi {{name}}"
-      subject: 'Can you endorse {{company_name}}'
+      greeting: "Hi %{name}"
+      subject: 'Can you endorse %{company_name}'
       instructions: "To write your endorsement, go to:"
       appendage: This was sent from the Rails Development Directory.
     
     endorsement_notification:
-      greeting: "Hi {{name}}"
+      greeting: "Hi %{name}"
       subject: You've been endorsed in the Rails Development Directory
-      instructions: "{{name}} has endorsed you on the Rails Development Directory. To approve this endorsement, go to:"
+      instructions: "%{name} has endorsed you on the Rails Development Directory. To approve this endorsement, go to:"
       appendage: This was sent from the Rails Development Directory
 
     user_welcome: 
       subject: 'Welcome to the Rails Development Directory'
-      greeting: "Hi {{name}}"
+      greeting: "Hi %{name}"
       message: You've been set up with an account on the Rails Development Directory
       credentials: "You can get started by clicking the link below"
       email: "Email:"
@@ -568,15 +566,15 @@ en:
 
     provider_welcome: 
       subject: 'Welcome to the Rails Development Directory'
-      greeting: Hi {{name}},
+      greeting: Hi %{name},
       message: Thanks for signing up to the Rails Development Directory
-      credentials: "You can log in at {{url}} and your details are below"
+      credentials: "You can log in at %{url} and your details are below"
       email: "Email:"
       password: "Password:"
       signoff: "Regards, The Engine Yard Team"
 
     password_reset: 
       subject: 'Welcome to the Rails Development Directory'
-      greeting: Hi {{name}},
+      greeting: Hi %{name},
       instructions: You can reset your password using the link below
       signoff: "Regards, The Engine Yard Team"

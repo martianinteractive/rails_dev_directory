@@ -1,3 +1,4 @@
+Feature: admin providers
 As a developer and EY admin
 I want an unrestricted admin section
 So that I can edit database fields within the UI of the site
@@ -5,8 +6,8 @@ So that I can edit database fields within the UI of the site
   Scenario: Creating a new provider
     Given a logged in admin user
       And I am on the admin dashboard
-      And I follow "Developers"
-      And I follow "Add a new developer"
+      And I follow "navigation.providers" translation
+      And I follow "provider.add_new" translation
     When I fill in "Company name" with "Pullover"
       And I fill in "City" with "Dublin"
       And I fill in "Company email" with "paul@rslw.com"
@@ -21,9 +22,9 @@ So that I can edit database fields within the UI of the site
       And a user "paul" belonging to the "Pullover" provider
       And a logged in admin user
     When I am on the admin dashboard
-      And I follow "Developers"
+      And I follow "navigation.providers" translation
       And I follow "Pullover"
-      And I follow "Edit developer"
+      And I follow "provider.edit" translation
     When I fill in "Company name" with "Gown"
       And I fill in "Street address" with "Market street"
       And I fill in "provider[marketing_description]" with "Cheap, Fast, Reliable"
@@ -42,7 +43,7 @@ So that I can edit database fields within the UI of the site
     Given a provider "Pullover"
       And a logged in admin user
       And I am on the admin dashboard
-      And I follow "Developers"
+      And I follow "navigation.providers" translation
       And I follow "Pullover"
     Then I should see "Pullover"
     
@@ -50,7 +51,7 @@ So that I can edit database fields within the UI of the site
     Given a provider "Jimbo"
       And a logged in admin user
       And I am on the admin dashboard
-    When I follow "Developers"
+    When I follow "navigation.providers" translation
       Then I should see "Jimbo"
       And I should see "active"
       
@@ -58,7 +59,7 @@ So that I can edit database fields within the UI of the site
     Given a provider "HJ"
       And a logged in admin user
       And I am on the admin dashboard
-    When I follow "Developers"
+    When I follow "navigation.providers" translation
       And I follow "HJ"
-      And I press "Delete this provider"
-    Then I should see "Developer deleted successfully"
+      And I press "provider.delete" translation
+    Then I should see "provider.deleted_successfully" translation

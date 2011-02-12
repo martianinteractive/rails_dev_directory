@@ -12,6 +12,7 @@ Factory.define :provider do |provider|
   provider.company_url "http://hypertiny.net"
   provider.company_size 11
   provider.aasm_state "active"
+  provider.association :user, :factory => :user
 end
 
 Factory.define :user do |user|
@@ -102,4 +103,21 @@ end
 Factory.define(:technology_type) do |t|
   t.name "Ruby on Rails"
   t.checked true
+end
+
+
+Factory.define(:endorsement_request) do |endorsement_request|
+  endorsement_request.message "Hold yer horses, big shot."
+  endorsement_request.recipients {|recipients| [recipients.association(:endorsement_request_recipient)]}
+  endorsement_request.association :provider, :factory => :provider
+end
+
+Factory.define(:endorsement_request_recipient) do |endorsement_request_recipient|
+  endorsement_request_recipient.email 'john@john.net'
+  endorsement_request_recipient.validation_token 'abc123'
+end
+
+Factory.define :request, :class => Request do |request|
+  request.association :provider, :factory => :provider
+  request.association :rfp, :factory => :rfp
 end

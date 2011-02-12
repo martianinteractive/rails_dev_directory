@@ -8,7 +8,7 @@
   <p><%= t('provider.no_providers') %></p>
 <%- else -%>
 
-  <%- form_for :rfp, :url => new_rfp_path, :html => {:method => :get} do |f| -%>
+  <%= form_for :rfp, :url => new_rfp_path, :html => {:method => :get} do |f| -%>
   
     <table>
       <tr>

@@ -2,16 +2,14 @@ require 'exportable'
 class Provider < ActiveRecord::Base
   include AASM
   
-  validates_presence_of :company_name, :city, :email, :company_url
-  validates_uniqueness_of :slug
-  validate_on_create :first_user_has_email_matching_company_url
-  validates_acceptance_of :terms_of_service
-  validates_length_of :marketing_description, :maximum => 300, :allow_nil => true
+  validates :company_name, :city, :email, :company_url, :presence => true
+  validates :slug, :uniqueness => true
+  validates :terms_of_service, :acceptance => true
+  validates :marketing_description, :length => {:maximum => 300, :allow_nil => true}
   validate :name_is_not_a_reserved_country_name
   
   audit
   has_attached_file :logo, :styles => { :medium => "300x300>", :thumb => "64x64>" }
-  xss_terminate :sanitize => [:marketing_description]
   format_dates :timestamps
   
   aasm_initial_state :inactive
@@ -41,23 +39,23 @@ class Provider < ActiveRecord::Base
   
   accepts_nested_attributes_for :users
   
-  before_validation_on_create :save_slug
+  before_validation :save_slug, :on => :create
   before_validation :filter_carraige_returns
   before_create :set_first_user_provider
   after_create :set_first_user_as_owner
   after_create :send_owner_welcome
   after_create :set_default_services
   
-  named_scope :active, :conditions => {:aasm_state => 'active'}, :order => :company_name
-  named_scope :inactive, :conditions => {:aasm_state => 'inactive'}, :order => :company_name
-  named_scope :flagged, :conditions => {:aasm_state => 'flagged'}, :order => :company_name
-  named_scope :all_by_company_name, :order => :company_name
-  named_scope :by_country, :group => :country, :order => :country, :select => :country, :conditions => "country != ''"
-  named_scope :by_state, :conditions => "state_province != 'NA' and state_province != ''", :group => :state_province, :order => :state_province, :select => :state_province
-  named_scope :us_based, :conditions => {:country => 'US'}
-  named_scope :all_by_location, :order => "country, state_province", :conditions => "country != ''"
-  named_scope :from_country, lambda { |country| {:conditions => {:country => country.to_s}}}
-  named_scope :from_state, lambda { |state| {:conditions => {:state_province => state.to_s}}}
+  scope :active, :conditions => {:aasm_state => 'active'}, :order => :company_name
+  scope :inactive, :conditions => {:aasm_state => 'inactive'}, :order => :company_name
+  scope :flagged, :conditions => {:aasm_state => 'flagged'}, :order => :company_name
+  scope :all_by_company_name, :order => :company_name
+  scope :by_country, :group => :country, :order => :country, :select => :country, :conditions => "country != ''"
+  scope :by_state, :conditions => "state_province != 'NA' and state_province != ''", :group => :state_province, :order => :state_province, :select => :state_province
+  scope :us_based, :conditions => {:country => 'US'}
+  scope :all_by_location, :order => "country, state_province", :conditions => "country != ''"
+  scope :from_country, lambda { |country| {:conditions => {:country => country.to_s}}}
+  scope :from_state, lambda { |state| {:conditions => {:state_province => state.to_s}}}
   
   def self.find(*args)
     if args.not.many? and args.first.kind_of?(String) and args.first.not.match(/^\d*$/)
@@ -194,17 +192,6 @@ private
     self.slug = slugged_company_name
   end
   
-  def first_user_has_email_matching_company_url
-    return true unless users.first and company_url.not.blank? and users.first.email.not.blank?
-    company_url_host = URI.parse(cleaned_company_url).host
-    user_email_host = TMail::Address.parse(users.first.email).domain
-    if !company_url_host.match(/#{user_email_host}$/)
-      errors.add_to_base(I18n.t('provider.validations.user_email_cannot_be_different_domain'))
-    end
-  rescue
-    errors.add_to_base(I18n.t('provider.validations.valid_url'))
-  end
-  
   def set_first_user_as_owner
     update_attribute(:user, users.first) if users.first
   end
@@ -214,7 +201,7 @@ private
   end
   
   def send_owner_welcome
-    Notification.deliver_provider_welcome(user) if user
+    Notification.provider_welcome(user).deliver if user
   end
   
   def owner_name

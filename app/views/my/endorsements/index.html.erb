@@ -19,7 +19,7 @@
         
     </div>
     <div id="non-sorting-endorsements">
-      <%- form_tag update_all_my_endorsements_path do -%>
+      <%= form_tag update_all_my_endorsements_path do %>
         <table class="endorsements">
           <tr>
             <th><%= t('endorsement.is_approved') %></th>
@@ -33,9 +33,9 @@
         </tbody>
         </table>
         <%= submit_tag t('endorsement.approve_selected') %>
-      <%- end -%>
+      <% end %>
     </div>
-  <%- end -%>
+  <% end %>
 
   <h3><%= t('endorsement_request.headline') %></h3>
   <%- if @endorsement_requests.empty? -%>

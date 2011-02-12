@@ -3,7 +3,7 @@
 <%= render :partial => 'admin/portfolio_items/form' %>
 
 <p>
-  <% form_for [:admin, @portfolio_item], :html => {:method => :delete} do |f| -%>
+  <%= form_for [:admin, @portfolio_item], :html => {:method => :delete} do |f| -%>
     <%= f.submit t('portfolio_item.delete'), :class => "confirm" %>
   <% end -%>
 </p>

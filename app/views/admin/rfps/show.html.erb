@@ -55,7 +55,7 @@
 </dl>
 
 <p>
-  <% form_for [:admin, @rfp], :html => {:method => :delete} do |f| -%>
+  <%= form_for [:admin, @rfp], :html => {:method => :delete} do |f| -%>
     <%= f.submit t('rfp.delete'), :class => "confirm" %>
   <% end -%>
 </p>

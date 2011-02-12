@@ -23,7 +23,8 @@ module LocalizedCountrySelect
     # Returns array with codes and localized country names (according to <tt>I18n.locale</tt>)
     # for <tt><option></tt> tags
     def localized_countries_array
-      I18n.translate(:countries).map { |key, value| [value, key.to_s.upcase] }.sort
+      I18n.translate(:countries).map { |key, value| [value, key.to_s.upcase] }.
+                                 sort_by { |country| country.first.parameterize }
     end
     # Return array with codes and localized country names for array of country codes passed as argument
     # == Example
@@ -31,7 +32,7 @@ module LocalizedCountrySelect
     #   # => [ ['Taiwan', 'TW'], ['China', 'CN'] ]
     def priority_countries_array(country_codes=[])
       countries = I18n.translate(:countries)
-      country_codes.map { |code| [countries[code], code.to_s.upcase] }
+      country_codes.map { |code| [countries[code.to_s.upcase.to_sym], code.to_s.upcase] }
     end
   end
 end
@@ -55,9 +56,7 @@ module ActionView
       # It behaves likes older object-binded brother +localized_country_select+ otherwise
       # TODO : Implement pseudo-named args with a hash, not the "somebody said PHP?" multiple args sillines
       def localized_country_select_tag(name, selected_value = nil, priority_countries = nil, html_options = {})
-        content_tag :select,
-                    localized_country_options_for_select(selected_value, priority_countries),
-                    { "name" => name, "id" => name }.update(html_options.stringify_keys)
+        select_tag name.to_sym, localized_country_options_for_select(selected_value, priority_countries), html_options.stringify_keys
       end
 
       # Returns a string of option tags for countries according to locale. Supply the country code in upper-case ('US', 'DE') 
@@ -68,8 +67,10 @@ module ActionView
         if priority_countries
           country_options += options_for_select(LocalizedCountrySelect::priority_countries_array(priority_countries), selected)
           country_options += "<option value=\"\" disabled=\"disabled\">-------------</option>\n"
+          return country_options + options_for_select(LocalizedCountrySelect::localized_countries_array - LocalizedCountrySelect::priority_countries_array(priority_countries), selected)
+        else
+          return country_options + options_for_select(LocalizedCountrySelect::localized_countries_array, selected)
         end
-        return country_options + options_for_select(LocalizedCountrySelect::localized_countries_array, selected)
       end
       
     end

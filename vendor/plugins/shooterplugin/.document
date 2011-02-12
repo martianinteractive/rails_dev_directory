@@ -1,7 +1,0 @@
-lib/**/*.rb
-rails/*
-views/**/*
-bin/*
-features/**/*.feature
-LICENSE
-README

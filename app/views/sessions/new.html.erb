@@ -1,6 +1,6 @@
 <h1><%= t('forms.sign_in') %></h1>
 
-<% form_for @session, :url => session_path do |f| -%>
+<%= form_for @session, :url => session_path do |f| -%>
   
   <%= f.error_messages %>
 

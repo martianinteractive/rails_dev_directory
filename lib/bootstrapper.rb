@@ -1,7 +1,7 @@
 require 'factory_girl'
 require 'highline/import'
-require 'spec/factories'
-require 'spec/blueprints'
+require "#{Rails.root}/spec/factories.rb"
+require "#{Rails.root}/spec/support/blueprints.rb"
 class Bootstrapper
   class << self
     def bootstrap!

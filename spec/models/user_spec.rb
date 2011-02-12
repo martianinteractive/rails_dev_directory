@@ -2,11 +2,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe User do
-  fixtures :users
   
   describe "first name or email" do
     it "should return email if no first name" do
-      User.new(:email => 'paul@rslw.com').first_name_or_email.should == 'paul'
+      User.new(:email => 'paul@rslw.com').first_name_or_email.should == 'paul@rslw.com'
     end
     
     it "should return first name if present" do

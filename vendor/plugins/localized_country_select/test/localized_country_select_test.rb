@@ -5,15 +5,23 @@ require 'active_support'
 require 'action_controller'
 require 'action_controller/test_process'
 require 'action_view'
+require 'action_view/helpers'
 require 'action_view/helpers/tag_helper'
 require 'i18n'
+
+begin
+  require 'redgreen'
+rescue LoadError
+  puts "[!] Install redgreen gem for better test output ($ sudo gem install redgreen)"
+end unless ENV["TM_FILEPATH"]
 
 require 'localized_country_select'
 
 class LocalizedCountrySelectTest < Test::Unit::TestCase
 
-  include ActionView::Helpers::FormOptionsHelper
   include ActionView::Helpers::TagHelper
+  include ActionView::Helpers::FormOptionsHelper
+  include ActionView::Helpers::FormTagHelper
 
   def test_action_view_should_include_helper_for_object
     assert ActionView::Helpers::FormBuilder.instance_methods.include?('localized_country_select')
@@ -35,7 +43,7 @@ class LocalizedCountrySelectTest < Test::Unit::TestCase
     # puts localized_country_select_tag( "competition_submission[data][citizenship]", nil)
     assert localized_country_select_tag( "competition_submission[data][citizenship]", nil) =~
               Regexp.new(
-              Regexp.escape('<select id="competition_submission[data][citizenship]" name="competition_submission[data][citizenship]">') ),
+              Regexp.escape('<select id="competition_submission_data_citizenship" name="competition_submission[data][citizenship]">') ),
               "Should have proper name"
   end
 
@@ -74,6 +82,22 @@ class LocalizedCountrySelectTest < Test::Unit::TestCase
     assert_nothing_raised { LocalizedCountrySelect::priority_countries_array([:TW, :CN]) }
     I18n.locale = 'en'
     assert_equal [ ['Taiwan', 'TW'], ['China', 'CN'] ], LocalizedCountrySelect::priority_countries_array([:TW, :CN])
+  end
+
+  def test_priority_countries_allows_passing_either_symbol_or_string
+    I18n.locale = 'en'
+    assert_equal [ ['United States', 'US'], ['Canada', 'CA'] ], LocalizedCountrySelect::priority_countries_array(['US', 'CA'])
+  end
+
+  def test_priority_countries_allows_passing_upcase_or_lowercase
+    I18n.locale = 'en'
+    assert_equal [ ['United States', 'US'], ['Canada', 'CA'] ], LocalizedCountrySelect::priority_countries_array(['us', 'ca'])
+    assert_equal [ ['United States', 'US'], ['Canada', 'CA'] ], LocalizedCountrySelect::priority_countries_array([:us, :ca])
+  end
+
+  def test_should_list_countries_with_accented_names_in_correct_order
+    I18n.locale = 'cz'
+    assert_match Regexp.new(Regexp.escape(%Q{<option value="BI">Burundi</option>\n<option value="TD">Čad</option>})), localized_country_select(:user, :country)
   end
 
   private

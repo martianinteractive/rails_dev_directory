@@ -14,7 +14,7 @@ Feature: Searching for a developer
     When I am on the homepage
       And I fill in "Your Budget" with "50000"
       And I check "Rails"
-      And I press "Find a developer"
+      And I press "provider.directory.find_providers" translation
     Then I should see "Hashrock"
       And I should not see "Clearright"
       
@@ -22,7 +22,7 @@ Feature: Searching for a developer
     When I am on the homepage
       And I fill in "Your Budget" with "50000"
       And I check "Visual Design"
-      And I press "Find a developer"
+      And I press "provider.directory.find_providers" translation
     Then I should see "Clearright"
       And I should not see "Hashrock"
       
@@ -31,7 +31,7 @@ Feature: Searching for a developer
       And I fill in "Your Budget" with "50000"
       And I check "Visual Design"
       And I check "Rails"
-      And I press "Find a developer"
+      And I press "provider.directory.find_providers" translation
     Then I should not see "Clearright"
       And I should not see "Hashrock"
       

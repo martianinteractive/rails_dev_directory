@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091210164854) do
+ActiveRecord::Schema.define(:version => 20100310170602) do
 
   create_table "audits", :force => true do |t|
     t.string   "auditable_type"
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(:version => 20091210164854) do
   end
 
   add_index "behavior_configs", ["key"], :name => "index_behavior_configs_on_key"
+
+  create_table "contact_messages", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone_number"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "endorsement_request_recipients", :force => true do |t|
     t.integer "endorsement_request_id"

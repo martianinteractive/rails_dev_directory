@@ -1,4 +1,4 @@
-<% form_for @page, :url => @page.new_record? ? admin_pages_path : admin_page_url(:id => @page.id) do |f| -%>
+<%= form_for @page, :url => @page.new_record? ? admin_pages_path : admin_page_url(:id => @page.id) do |f| %>
   
   <%= f.error_messages %>
 
@@ -36,9 +36,9 @@
     </fieldset>
     
     <fieldset>
-      <%= f.label :content, "#{t("page.content")}<br/> <em>#{t('page.accepts_textile')}</em>" %> <%= f.text_area :content %> <br />
+      <%= f.label :content, "#{t("page.content")}<br/> <em>#{t('page.accepts_textile_html')}</em>" %> <%= f.text_area :content %> <br />
     </fieldset>
   
   
   <%= f.submit t('forms.save') %>
-<% end -%>
+<% end %>

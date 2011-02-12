@@ -11,7 +11,7 @@ Feature: Adding arbitrary content to areas of already existant pages
       
     Scenario: Adding content to the provider signup page by creating a page with a url of 'provider-signup'
       Given a page "Provider signup" with url "providers/new"
-        And page "Provider signup" has content "Oh, I LOVE that"
+        And page "Provider signup" has content "Oh, I love that"
       When I am on the homepage
         And I follow "provider.signup" translation
-      Then I should see "Oh, I LOVE that"
+      Then I should see "Oh, I love that"

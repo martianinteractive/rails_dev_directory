@@ -1,5 +1,5 @@
 class StatesController < ApplicationController
   def show
-    @providers = Provider.from_state(State.from_slug(params[:state]).code)
+    @providers = Provider.from_state(params[:state])
   end
 end

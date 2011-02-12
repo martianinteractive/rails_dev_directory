@@ -24,16 +24,7 @@ describe Provider do
       ["2-10", 2], ["11-30", 11], ["31-100", 31], ["100+", 100]
 ]
   end
-  
-  describe "counter cache on endorsements" do
-    it "should increment the endorsements on the provider counter cache" do
-      provider = Factory.create(:test_provider, :company_name => "Counter Slug")
-      provider.endorsements << Factory.create(:test_endorsement, :aasm_state => 'approved')
-      provider.reload
-      provider.endorsements_count.should == 1
-    end
-  end
-  
+
   describe "searching" do
     it "should search on budget" do
       Provider.should_receive(:all).with(:joins => nil, :group => nil, :conditions => ["aasm_state != 'flagged' and min_budget <= ?", 20000], :order => "aasm_state asc, if(endorsements_count >= 3,endorsements_count,0) desc, RAND()", :limit => 10)
@@ -43,11 +34,6 @@ describe Provider do
     it "should search on budget with weird formatting" do
       Provider.should_receive(:all).with(:joins => nil, :group => nil, :conditions => ["aasm_state != 'flagged' and min_budget <= ?", 20000], :order => "aasm_state asc, if(endorsements_count >= 3,endorsements_count,0) desc, RAND()", :limit => 10)
       Provider.search({:budget => "20,000"})
-    end
-    
-    it "should search on services provided" do
-      Provider.should_receive(:all).with(:joins => :provided_services, :group => 'provider_id', :conditions => ["aasm_state != 'flagged' and provided_services.service_id IN (?)", [1,2,3]], :order => "aasm_state asc, if(recommendations_count >= 3,recommendations_count,0) desc, RAND()", :limit => 10)
-      Provider.search({:service_ids => [1,2,3]})
     end
     
     it "should search on country" do
@@ -155,20 +141,6 @@ describe Provider do
       @provider.slug.should == @provider.slugged_company_name
     end
   end
-
-  describe "making sure that the email and url domain match" do
-    before do
-      @provider = Provider.new(@valid_attributes.merge(:email => 'paul@rslw.com', :company_url => 'http://www.hypertiny.net', :users_attributes => {'0' => {:email => 'paul@rslw.com', :password => 'password', :password_confirmation => 'password'}}))
-      @provider.users.first.password = 'password'
-      @provider.users.first.password_confirmation = 'password'
-    end
-    
-    it "should be invalid on the user email" do
-      @provider.valid?
-      @provider.should have(1).errors
-    end
-    
-  end
   
   describe "formatting prices" do
     before do
@@ -201,7 +173,7 @@ end
 
 describe Provider, "trying to register a reserved country / state name" do
   before do
-    @provider = Factory.build(:test_provider)
+    @provider = Factory.build(:provider)
   end
   
   it "should not allow me to register a country name" do
@@ -224,9 +196,6 @@ describe Provider, "receiving email on signup" do
     @provider.users.first.password_confirmation = 'monkeys'
     
     @provider.should be_valid
-    
-    Notification.should_not_receive(:create_user_welcome)
-    Notification.should_receive(:deliver_provider_welcome)
     
     @provider.save
   end

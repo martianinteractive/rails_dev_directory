@@ -6,7 +6,7 @@ class Request < ActiveRecord::Base
   
   audit
   
-  named_scope :recent, :order => "created_at DESC", :limit => 5
+  scope :recent, :order => "created_at DESC", :limit => 5
   
   def can_view?(user)
     provider.users.include?(user)
@@ -15,6 +15,6 @@ class Request < ActiveRecord::Base
 private
   
   def send_rfp_notification
-    Notification.deliver_rfp_notification(self) if provider and provider.user
+    Notification.rfp_notification(self).deliver if provider and provider.user
   end
 end

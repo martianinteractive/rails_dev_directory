@@ -1,3 +1,4 @@
+Feature: admin rfps
 As a developer and EY admin
 I want a full listing of rfps in the admin section
 So that examine all submitted rfps independent of providers
@@ -7,7 +8,7 @@ So that examine all submitted rfps independent of providers
       And a provider "Chris Thile" with an RFP called "Punch"
       And a logged in admin user
       And I am on the admin dashboard
-    When I follow "Requests"
+    When I follow "navigation.rfps" translation
       Then I should see "Unwieldy"
       And I should see "2 requests have been submitted"
 
@@ -15,7 +16,7 @@ So that examine all submitted rfps independent of providers
     Given a provider "Tim Stafford" with an RFP called "Unwieldy"
       And a logged in admin user
       And I am on the admin dashboard
-    When I follow "Requests"
+    When I follow "navigation.rfps" translation
       Then I should see "Unwieldy"
       And I should see "rfp.rfp_count_singular" translation
 
@@ -23,7 +24,7 @@ So that examine all submitted rfps independent of providers
     Given a provider "Tim Stafford" with an RFP called "Unwieldy"
       And a logged in admin user
       And I am on the admin dashboard
-      And I follow "Requests"
+      And I follow "navigation.rfps" translation
       And I follow "Unwieldy"
     Then I should see "Unwieldy"
 			And I should see "Tim Stafford"
@@ -32,7 +33,7 @@ So that examine all submitted rfps independent of providers
     Given a provider "Tim Stafford" with an RFP called "Unwieldy"
       And a logged in admin user
     When I am on the admin dashboard
-      And I follow "Requests"
+      And I follow "navigation.rfps" translation
       And I follow "Unwieldy"
       And I press "Delete Request"
     Then I should see "rfp.deleted_successfully" translation

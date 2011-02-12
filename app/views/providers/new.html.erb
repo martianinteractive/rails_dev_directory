@@ -6,7 +6,7 @@
 
 <hr />
 
-<% form_for setup_provider(@provider), :html => {:multipart => true} do |f| -%>
+<%= form_for setup_provider(@provider), :html => {:multipart => true} do |f| -%>
 
   <%= f.error_messages %>
 
@@ -14,7 +14,7 @@
 
     <p><%= t('provider.administrator_password_description')%></p>
     
-    <%- f.fields_for :users do |uf| -%>
+    <%= f.fields_for :users do |uf| -%>
       <fieldset>
         <%= uf.label :first_name, t("user.first_name") %> <%= uf.text_field :first_name %> <br />
         <%= uf.label :last_name, t("user.last_name") %> <%= uf.text_field :last_name %> <br />
@@ -34,7 +34,7 @@
 
     <label><%= t('provider.terms_of_service') %></label>
     <ul>
-      <li><%= f.check_box :terms_of_service %> <%= f.label :terms_of_service, t('provider.accept_terms_of_service')%></li>
+      <li><%= f.check_box :terms_of_service %> <%= f.label :terms_of_service, t('provider.accept_terms_of_service_html')%></li>
     </ul>
   </fieldset>
   

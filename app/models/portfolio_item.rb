@@ -1,8 +1,7 @@
 class PortfolioItem < ActiveRecord::Base
-  validates_presence_of :name, :url, :year_completed, :description
-  validate_on_create :is_not_the_fourth_item
-
-  xss_terminate :sanitize => [:description]
+  validates :name, :url, :year_completed, :description, :presence => true
+  validate :is_not_the_fourth_item, :on => :create
+  
   can_has?
   url_field :url
   acts_as_textiled :description

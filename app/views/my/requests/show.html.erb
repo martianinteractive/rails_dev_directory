@@ -108,7 +108,7 @@
   
     <p class="note"><%= t('rfp.delete_note') %></p>
   
-    <% form_for [:my, @request], :html => {:method => :delete} do |f| -%>
+    <%= form_for [:my, @request], :html => {:method => :delete} do |f| -%>
       <%= f.submit t('rfp.delete'), :class => "delete" %>
     <% end -%>
 

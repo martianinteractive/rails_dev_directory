@@ -81,6 +81,6 @@
 <%- end -%>
 
 
-<% form_for [:admin, @provider], :html => { :method => :delete } do |f| -%>
+<%= form_for [:admin, @provider], :html => { :method => :delete } do |f| -%>
   <%= f.submit t('provider.delete'), :class => "confirm" %>
 <% end -%>

@@ -588,17 +588,16 @@ input[type="submit"], button {
 input[type="submit"]:hover, button:hover {
   cursor: pointer;
 }
-form[action="/developers/search"] input[type="submit"] {
+form[action="/providers/search"] input[type="submit"] {
   margin-left: 17em;
 }
 form p {
   margin-top: 1em;
   margin-bottom: 1em;
 }
-textarea { 
-  width: 30em;
-  height: 10em;
-}
+textarea { width: 30em; height: 10em; }
+textarea.contact_message { width: 20em; }
+
 .sidebar input {
   margin-left: 0;
 }

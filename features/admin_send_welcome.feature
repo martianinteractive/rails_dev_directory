@@ -8,7 +8,7 @@ Feature: Sending a custom welcome to users
       And a user "paul" belonging to the "Billow" provider
       And a logged in admin user
     When I am on the admin dashboard
-      And I follow "Developers"
+      And I follow "navigation.providers" translation
       And I follow "Billow"
       And I follow "test@test.com"
       And I fill in "message" with "It's a nice day"

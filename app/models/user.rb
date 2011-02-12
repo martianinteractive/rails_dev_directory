@@ -17,12 +17,7 @@ class User < ActiveRecord::Base
   alias_method :name, :full_name
   
   def first_name_or_email
-    begin
-      return TMail::Address.parse(email).local if first_name.blank?
-      first_name
-    rescue TMail::SyntaxError
-      email
-    end
+    first_name.blank? ? email : first_name
   end
   
   def can_edit?(user)
@@ -64,7 +59,7 @@ class User < ActiveRecord::Base
   
   def deliver_password_reset_instructions!  
     reset_perishable_token!
-    Notification.deliver_password_reset_instructions(self)  
+    Notification.password_reset_instructions(self).deliver
   end
   
   def reset_token

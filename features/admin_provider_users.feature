@@ -1,3 +1,4 @@
+Feature: admin provider user
 As an Engine Yard administrator
 I want to browse and create users for providers
 So that I can see the activity on the provider account and provide support if necessary
@@ -6,7 +7,7 @@ So that I can see the activity on the provider account and provide support if ne
     Given a logged in admin user
       And I am on the admin dashboard
       And a provider "Hashrocket"
-    When I follow "Developers"
+    When I follow "navigation.providers" translation
       And I follow "Hashrocket"
       And I follow "Add a new user"
       And I fill in "First name" with "Ciara"
@@ -25,7 +26,7 @@ So that I can see the activity on the provider account and provide support if ne
       And I am on the admin dashboard
       And a provider "Crushtastic"
       And a user "paul" belonging to the "Crushtastic" provider
-    When I follow "Developers"
+    When I follow "navigation.providers" translation
       And I follow "Crushtastic"
       And I follow "test@test.com"
       And I follow "user.edit" translation
@@ -40,7 +41,7 @@ So that I can see the activity on the provider account and provide support if ne
       And a user "paul" belonging to the "Billow" provider
       And a logged in admin user
     When I am on the admin dashboard
-      And I follow "Developers"
+      And I follow "navigation.providers" translation
       And I follow "Billow"
       And I follow "test@test.com"
       And I follow "user.edit" translation

@@ -5,7 +5,7 @@
 <%= render :partial => 'my/users/form' %>
 
 <p>
-  <% form_for [:my, @user], :html => {:method => :delete} do |f| -%>
+  <%= form_for [:my, @user], :html => {:method => :delete} do |f| -%>
     <%= f.submit t('user.delete'), :class => "confirm" %>
   <% end -%>
 </p>

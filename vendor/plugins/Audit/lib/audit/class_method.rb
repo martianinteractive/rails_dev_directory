@@ -8,7 +8,7 @@ module AuditClassMethods
 
       after_create :log_create_audit
       after_update :log_update_audit
-      after_destroy :log_destroy_audit
+      before_destroy :log_destroy_audit
       
       has_many(:audits, :as => :auditable) do
         def log_create!

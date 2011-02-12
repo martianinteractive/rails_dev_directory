@@ -2,11 +2,9 @@
 
 <p class="description"><%= t('rfp.new_rfp_description') %></p>
 
-<p class="description note"><%= t('rfp.disclaimer') %></p>
-
 <hr />
 
-<% form_for setup_rfp(@rfp) do |f| -%>
+<%= form_for setup_rfp(@rfp) do |f| -%>
   
   <%= f.error_messages %>
   
@@ -32,7 +30,7 @@
     
     <label><%= t('rfp.services') %></label>
     <ul>
-      <%- f.fields_for :requested_services do |rf| -%>
+      <%= f.fields_for :requested_services do |rf| -%>
         <li>
           <%- if rf.object.checked -%>
             <%= image_tag '/images/icon-check.png', :class=>"check"%>
@@ -69,7 +67,7 @@
   <fieldset>
     <label><%= t('rfp.terms_of_service') %></label>
     <ul>
-      <li><%= f.check_box :terms_of_service %> <%= f.label :terms_of_service, t('rfp.accept_terms_of_service')%></li>
+      <li><%= f.check_box :terms_of_service %> <%= f.label :terms_of_service, t('rfp.accept_terms_of_service_html')%></li>
     </ul>
   </fieldset>
 
